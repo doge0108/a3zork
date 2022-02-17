@@ -1,5 +1,7 @@
 package poon.ssc.zork;
 
+import poon.ssc.zork.Command.CmdFactory;
+import poon.ssc.zork.Command.Command;
 import poon.ssc.zork.Command.ExitCmd;
 
 import java.util.Scanner;
@@ -25,9 +27,12 @@ public class Game {
         while(!isExit() && scanner.hasNextLine()){
             String rawInput = scanner.nextLine();
             System.out.println("You entered string " + rawInput);
-            ExitCmd exitCmd = new ExitCmd();
-            exitCmd.execute(this);
+            Command command = CmdFactory.get(rawInput);
+            if(command == null){
+                System.out.println("Try again");
+            }else{
+                command.execute(this);
+            }
         }
-        scanner.close();
     }
 }
