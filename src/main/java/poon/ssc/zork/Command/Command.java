@@ -4,6 +4,6 @@ import poon.ssc.zork.Game;
 
 public interface Command {
 
-    void execute(Game game);
+    void execute(Game game, String argument);
 
 }

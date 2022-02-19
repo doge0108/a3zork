@@ -5,15 +5,27 @@ import poon.ssc.zork.Command.impl.InfoCmd;
 
 public enum CommandType {
 
-    INFO(InfoCmd .class),
-    EXIT(ExitCmd.class);
+    INFO(InfoCmd .class, "info"),
+    EXIT(ExitCmd.class,"exit");
 
     private Class<?extends Command>commandClass;
 
-    CommandType(Class<? extends Command> commandClass) {
+    private String commandWord;
+
+    CommandType(Class<? extends Command> commandClass, String commandWord) {
         this.commandClass = commandClass;
+        this.commandWord = commandWord;
     }
+
     public Class getCommandClass(){
         return commandClass;
+    }
+
+    public String getCommandWord() {
+        return commandWord;
+    }
+
+    public boolean match(String rawInput){
+        return rawInput.startsWith(commandWord);
     }
 }
