@@ -1,9 +1,7 @@
 package poon.ssc.zork.Command;
 
-import poon.ssc.zork.Command.impl.ExitCmd;
-import poon.ssc.zork.Command.impl.InfoCmd;
-
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,5 +29,13 @@ public class CmdFactory {
 
     public static Command get(CommandType commandType){
         return commandMap.get(commandType);
+    }
+
+    public ArrayList<CommandType>getAllCommandList(){
+        ArrayList<CommandType> allCommandList = new ArrayList<>();
+        for(Map.Entry<CommandType,Command>entry :commandMap.entrySet()){
+            allCommandList.add(entry.getKey());
+        }
+        return allCommandList;
     }
 }
