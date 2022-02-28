@@ -67,7 +67,11 @@ public class Game {
         }
     }
     public void getInfo(){
-        System.out.println("Currently in the" + " " + currentRoom.getDescription());
+        System.out.println("Currently in Room" + " " + currentRoom.getDescription());
+        if (currentRoom.getMonster() != null){
+            System.out.println(currentRoom.getMonster().getType() +" "+ currentRoom.getMonster().getName() + " " + "with a HP of" + " "+
+                    currentRoom.getMonster().getHp() + "/" + currentRoom.getMonster().getMaxHp() + " " + "appeared!!");
+        }
         System.out.println("The exits are: ");
         if (currentRoom.getNorthExit() != null){
             System.out.println("north");
@@ -82,12 +86,25 @@ public class Game {
     public void createRoom(){
 
         Room mainHall = new Room("Main Hall");
-        Room oneRoom = new Room("one Room");
+        Room Yoriichi = new Room("Yoriichi");
+        Room Tanjiro = new Room("Tanjiro");
+        Room Zenitsu = new Room("Zenitsu");
+        Room Inosuke = new Room("Inosuke");
+        Room Pikachu = new Room("Pikachu");
 
         currentRoom = mainHall;
 
-        mainHall.setExit(oneRoom,null,null,null);
-        oneRoom.setExit(null,mainHall,null,null);
+        mainHall.setExit(Tanjiro,Yoriichi,Zenitsu,Inosuke);
+        Tanjiro.setExit(null,mainHall,null,Pikachu);
+        Yoriichi.setExit(mainHall,null,null,null);
+        Zenitsu.setExit(null,null,null,mainHall);
+        Inosuke.setExit(null,null,mainHall,null);
+        Pikachu.setExit(null,null,Tanjiro,null);
 
+        Monster akaza = new Monster("akaza","Monster",100,100,1);
+        Monster muzan = new Monster("Muzan","Monster",200,200,1);
+
+        Tanjiro.setMonster(akaza);
+        Pikachu.setMonster(muzan);
     }
 }

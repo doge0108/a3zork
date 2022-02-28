@@ -1,6 +1,9 @@
 package poon.ssc.zork;
 
 public class Room {
+
+    private Monster monster;
+
     private Room northExit;
     private Room southExit;
     private Room eastExit;
@@ -34,5 +37,12 @@ public class Room {
 
     public String getDescription() {
         return Description;
+    }
+    public void setMonster(Monster monster){
+        this.monster = monster;
+    }
+
+    public Monster getMonster(){
+        return monster;
     }
 }
