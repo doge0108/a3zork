@@ -1,6 +1,7 @@
 package poon.ssc.zork.Command;
 
 import poon.ssc.zork.Command.impl.ExitCmd;
+import poon.ssc.zork.Command.impl.GoCmd;
 import poon.ssc.zork.Command.impl.HelpCmd;
 import poon.ssc.zork.Command.impl.InfoCmd;
 
@@ -8,7 +9,8 @@ public enum CommandType {
 
     INFO(InfoCmd .class, "info"),
     EXIT(ExitCmd.class,"exit"),
-    HELP(HelpCmd.class,"help");
+    HELP(HelpCmd.class,"help"),
+    GO(GoCmd.class,"go");
 
     private Class<?extends Command>commandClass;
 
