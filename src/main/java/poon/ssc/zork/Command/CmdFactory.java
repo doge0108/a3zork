@@ -31,11 +31,7 @@ public class CmdFactory {
         return commandMap.get(commandType);
     }
 
-    public ArrayList<CommandType>getAllCommandList(){
-        ArrayList<CommandType> allCommandList = new ArrayList<>();
-        for(Map.Entry<CommandType,Command>entry :commandMap.entrySet()){
-            allCommandList.add(entry.getKey());
-        }
-        return allCommandList;
+    public static Map<CommandType,Command>getCommandMap(){
+        return commandMap;
     }
 }

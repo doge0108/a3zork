@@ -6,11 +6,9 @@ import poon.ssc.zork.Command.CommandType;
 import poon.ssc.zork.Game;
 
 public class HelpCmd implements Command{
-    public CmdFactory cmf = new CmdFactory();
 
+    @Override
     public void execute(Game game, String argument){
-        for(CommandType c:cmf.getAllCommandList()){
-            System.out.println(c.getCommandWord());
-        }
+        game.help();
     }
 }

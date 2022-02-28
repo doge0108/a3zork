@@ -2,6 +2,7 @@ package poon.ssc.zork;
 
 import poon.ssc.zork.Command.*;
 
+import java.util.Map;
 import java.util.Scanner;
 
 public class Game {
@@ -32,6 +33,12 @@ public class Game {
             }else{
                 command.execute(this,commandLine.getArgument());
             }
+        }
+    }
+    public static void help(){
+        Map<CommandType,Command> commandMap = CmdFactory.getCommandMap();
+        for(Map.Entry<CommandType,Command>entry : commandMap.entrySet()){
+            System.out.println(entry.getKey());
         }
     }
 }
