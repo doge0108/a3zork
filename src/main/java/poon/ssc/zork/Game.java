@@ -18,6 +18,8 @@ public class Game {
     Room currentRoom = new Room("dummy room");
     Room previousRoom = new Room("dummy previous room");
 
+    Player player1 = new Player("Poon", "Player",100,100,10);
+
     public void exit() {
         this.exit = true;
         scanner.close();
@@ -119,5 +121,16 @@ public class Game {
         Inosuke.setItem(sword);
         Zenitsu.setItem(dagger);
         Pikachu.setItem(rock);
+    }
+
+    public void attack(){
+        if (currentRoom.getMonster() != null){
+            System.out.println(player1.getName() + " " + "is attacking" + " " + currentRoom.getMonster().getType() + " " + currentRoom.getMonster().getName() + "!!");
+            currentRoom.getMonster().decreaseHp(player1.getAttackingPower());
+            System.out.println(currentRoom.getMonster().getType() + " " + currentRoom.getMonster().getName() + " " + "Hp is" + " " + currentRoom.getMonster().getHp() + "/" + currentRoom.getMonster().getMaxHp());
+            if (currentRoom.getMonster().getHp() == 0){
+                System.out.println(currentRoom.getMonster().getType() + " " + currentRoom.getMonster().getName() + " " + "IS DEAD!");
+            }
+        }
     }
 }
