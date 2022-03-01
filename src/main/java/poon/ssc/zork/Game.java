@@ -133,4 +133,11 @@ public class Game {
             }
         }
     }
+
+    public void take(){
+        if (currentRoom.getItem() != null){
+            player1.increaseAttackingPower(currentRoom.getItem().getAttackingPower());
+            System.out.println("Picked up" + " " + currentRoom.getItem().getDescription() + "\n" + "Attacking Power increased to" + " " + player1.getAttackingPower() );
+        }
+    }
 }

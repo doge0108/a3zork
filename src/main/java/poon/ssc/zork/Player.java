@@ -8,5 +8,8 @@ public class Player extends Character {
     public String getName(){
         return this.name;
     }
+    public void increaseAttackingPower(int attackingPower){
+        this.attackingPower += attackingPower;
+    }
 }
 
