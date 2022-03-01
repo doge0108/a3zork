@@ -25,7 +25,7 @@ public class Game {
 
     public void start(){
         System.out.println("Game started");
-        createRoom();
+        createGame();
         while(!isExit() && scanner.hasNextLine()){
             String rawInput = scanner.nextLine();
             System.out.println("You entered string " + rawInput);
@@ -72,6 +72,9 @@ public class Game {
             System.out.println(currentRoom.getMonster().getType() +" "+ currentRoom.getMonster().getName() + " " + "with a HP of" + " "+
                     currentRoom.getMonster().getHp() + "/" + currentRoom.getMonster().getMaxHp() + " " + "appeared!!");
         }
+        if (currentRoom.getItem() != null){
+            System.out.println(currentRoom.getItem().getDescription() + " " + "Dropped!" );
+        }
         System.out.println("The exits are: ");
         if (currentRoom.getNorthExit() != null){
             System.out.println("north");
@@ -83,7 +86,7 @@ public class Game {
             System.out.println("west");
         }
     }
-    public void createRoom(){
+    public void createGame(){
 
         Room mainHall = new Room("Main Hall");
         Room Yoriichi = new Room("Yoriichi");
@@ -103,8 +106,18 @@ public class Game {
 
         Monster akaza = new Monster("akaza","Monster",100,100,1);
         Monster muzan = new Monster("Muzan","Monster",200,200,1);
+        Monster charmander = new Monster("Charmander","Monster",75,75,2);
 
         Tanjiro.setMonster(akaza);
-        Pikachu.setMonster(muzan);
+        Yoriichi.setMonster(muzan);
+        Pikachu.setMonster(charmander);
+
+        Item sword = new Item("sword",10);
+        Item dagger = new Item("Dagger",5);
+        Item rock = new Item("rock",100);
+
+        Inosuke.setItem(sword);
+        Zenitsu.setItem(dagger);
+        Pikachu.setItem(rock);
     }
 }

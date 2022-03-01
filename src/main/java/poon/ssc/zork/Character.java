@@ -15,11 +15,9 @@ public class Character {
         this.type = type;
     }
 
-
     public String getName() {
         return name;
     }
-
 
     public int getHp() {
         return hp;
