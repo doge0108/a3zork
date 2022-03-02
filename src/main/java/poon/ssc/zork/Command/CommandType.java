@@ -9,7 +9,8 @@ public enum CommandType {
     HELP(HelpCmd.class,"help"),
     GO(GoCmd.class,"go"),
     ATTACK(AttackCmd.class,"attack with"),
-    TAKE(TakeCmd.class,"take");
+    TAKE(TakeCmd.class,"take"),
+    USE(UseCmd.class,"use");
 
     private Class<?extends Command>commandClass;
 

@@ -11,5 +11,11 @@ public class Player extends Character {
     public void increaseAttackingPower(int attackingPower){
         this.attackingPower += attackingPower;
     }
+    public void increaseHp(int Hp){
+        this.hp += Hp;
+    }
+    public void decreaseHp(int Hp) {
+        this.hp -= Hp;
+    }
 }
 

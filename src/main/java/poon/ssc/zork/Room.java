@@ -3,7 +3,8 @@ package poon.ssc.zork;
 public class Room {
 
     private Monster monster;
-    private Item item;
+    private AtkItem AtkItem;
+    private Util util;
 
     private Room northExit;
     private Room southExit;
@@ -47,9 +48,13 @@ public class Room {
         return monster;
     }
 
-    public void setItem(Item item){ this.item = item;}
+    public void setAtkItem(AtkItem AtkItem){ this.AtkItem = AtkItem;}
 
-    public Item getItem(){
-        return item;
+    public AtkItem getAtkItem(){
+        return AtkItem;
     }
+    public Util getUtil() {
+        return util;
+    }
+    public void setUtil(Util Util){ this.util = Util;}
 }

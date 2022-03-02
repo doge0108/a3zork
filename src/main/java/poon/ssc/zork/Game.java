@@ -3,6 +3,7 @@ package poon.ssc.zork;
 import poon.ssc.zork.Command.*;
 
 import java.util.Map;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
@@ -18,7 +19,7 @@ public class Game {
     Room currentRoom = new Room("dummy room");
     Room previousRoom = new Room("dummy previous room");
 
-    Player player1 = new Player("Poon", "Player",100,100,10);
+    Player player1 = new Player("Poon", "Player",50,100,10);
 
     public void exit() {
         this.exit = true;
@@ -74,8 +75,8 @@ public class Game {
             System.out.println(currentRoom.getMonster().getType() +" "+ currentRoom.getMonster().getName() + " " + "with a HP of" + " "+
                     currentRoom.getMonster().getHp() + "/" + currentRoom.getMonster().getMaxHp() + " " + "appeared!!");
         }
-        if (currentRoom.getItem() != null){
-            System.out.println(currentRoom.getItem().getDescription() + " " + "Dropped!" );
+        if (currentRoom.getAtkItem() != null){
+            System.out.println(currentRoom.getAtkItem().getDescription() + " " + "Dropped!" );
         }
         System.out.println("The exits are: ");
         if (currentRoom.getNorthExit() != null){
@@ -106,38 +107,63 @@ public class Game {
         Inosuke.setExit(null,null,mainHall,null);
         Pikachu.setExit(null,null,Tanjiro,null);
 
-        Monster akaza = new Monster("akaza","Monster",100,100,1);
-        Monster muzan = new Monster("Muzan","Monster",200,200,1);
-        Monster charmander = new Monster("Charmander","Monster",75,75,2);
+        Monster akaza = new Monster("akaza","Monster",100,100,10,6);
+        Monster muzan = new Monster("Muzan","Monster",200,200,15,4);
+        Monster charmander = new Monster("Charmander","Monster",75,75,20,2);
 
         Tanjiro.setMonster(akaza);
         Yoriichi.setMonster(muzan);
         Pikachu.setMonster(charmander);
 
-        Item sword = new Item("sword",10);
-        Item dagger = new Item("Dagger",5);
-        Item rock = new Item("rock",100);
+        AtkItem sword = new AtkItem("sword",10);
+        AtkItem dagger = new AtkItem("Dagger",5);
+        AtkItem rock = new AtkItem("rock",100);
 
-        Inosuke.setItem(sword);
-        Zenitsu.setItem(dagger);
-        Pikachu.setItem(rock);
+        Inosuke.setAtkItem(sword);
+        Zenitsu.setAtkItem(dagger);
+        Pikachu.setAtkItem(rock);
+
+        Util firstAid = new Util("firstAid",10);
+
+        Tanjiro.setUtil(firstAid);
     }
 
     public void attack(){
+        Random rn = new Random();
         if (currentRoom.getMonster() != null){
-            System.out.println(player1.getName() + " " + "is attacking" + " " + currentRoom.getMonster().getType() + " " + currentRoom.getMonster().getName() + "!!");
+            System.out.println("Attacking" + " " + currentRoom.getMonster().getType() + " " + currentRoom.getMonster().getName() + "!!");
             currentRoom.getMonster().decreaseHp(player1.getAttackingPower());
-            System.out.println(currentRoom.getMonster().getType() + " " + currentRoom.getMonster().getName() + " " + "Hp is" + " " + currentRoom.getMonster().getHp() + "/" + currentRoom.getMonster().getMaxHp());
+            int prob = rn.nextInt((10-1)+1)+1;
+            if ( prob <= currentRoom.getMonster().getAttackingProb()){
+                System.out.println(currentRoom.getMonster().getName() + " " + "is attacking back!");
+                player1.decreaseHp(currentRoom.getMonster().attackingPower);
+                System.out.println(player1.getName() + " " + "Current HP is" + " " + player1.getHp());
+            }
+            System.out.println(currentRoom.getMonster().getType() + " " + currentRoom.getMonster().getName() + " " + currentRoom.getMonster().getHp() + "/" + currentRoom.getMonster().getMaxHp());
             if (currentRoom.getMonster().getHp() == 0){
                 System.out.println(currentRoom.getMonster().getType() + " " + currentRoom.getMonster().getName() + " " + "IS DEAD!");
             }
+        }else{
+            System.out.println("No monster here can't attack!");
         }
     }
 
     public void take(){
-        if (currentRoom.getItem() != null){
-            player1.increaseAttackingPower(currentRoom.getItem().getAttackingPower());
-            System.out.println("Picked up" + " " + currentRoom.getItem().getDescription() + "\n" + "Attacking Power increased to" + " " + player1.getAttackingPower() );
+        if (currentRoom.getAtkItem() != null){
+            player1.increaseAttackingPower(currentRoom.getAtkItem().getAtkPower());
+            System.out.println("Picked up" + " " + currentRoom.getAtkItem().getDescription() + "\n" + "Attacking Power increased to" + " " + player1.getAttackingPower() );
+        }
+    }
+
+    public void use(){
+        if (currentRoom.getUtil() != null ){
+            if (!((player1.getHp() + currentRoom.getUtil().getHp())> 100)){
+                player1.increaseHp(currentRoom.getUtil().getHp());
+                System.out.println("Player" + " " + player1.getName() + " "+ "HP" + " " + "Increased to" + " " + player1.getHp());
+            }else{
+                System.out.println("Limit HP exceed !!");
+            }
+
         }
     }
 }
