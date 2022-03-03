@@ -10,7 +10,13 @@ public enum CommandType {
     GO(GoCmd.class,"go"),
     ATTACK(AttackCmd.class,"attack with"),
     TAKE(TakeCmd.class,"take"),
-    USE(UseCmd.class,"use");
+    USE(UseCmd.class,"use"),
+    PLAY(PlayCmd.class,"play"),
+    SAVE(SaveCmd.class,"save"),
+    LOAD(LoadCmd.class,"load"),
+    QUIT(QuitCmd.class,"quit"),
+    DROP(DropCmd.class,"drop"),
+    AUTOPILOT(autoPilotCmd.class,"autopilot");
 
     private Class<?extends Command>commandClass;
 

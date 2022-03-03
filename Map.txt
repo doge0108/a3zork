@@ -1,0 +1,12 @@
+3
+room1
+room2
+room3
+1,null,null,null
+null,2,0,null
+null,null,null,1
+2
+Muzan,Monster,100,100,10,5,1
+Akaza,Monster,100,100,15,1,2
+1
+Sword,10,2

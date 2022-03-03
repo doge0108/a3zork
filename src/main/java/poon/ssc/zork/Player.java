@@ -1,6 +1,7 @@
 package poon.ssc.zork;
 
 public class Player extends Character {
+    private AtkItem item;
 
     public Player(String name, String type, int hp, int maxHp, int attackingPower) {
         super(name, type, hp, maxHp, attackingPower);
@@ -17,5 +18,8 @@ public class Player extends Character {
     public void decreaseHp(int Hp) {
         this.hp -= Hp;
     }
+
+    public void setAtkItem(AtkItem item){this.item = item;}
+    public AtkItem getItem(){return item;}
 }
 
